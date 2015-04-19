@@ -1,7 +1,0 @@
-
-Procura no dia 01/04/2015
-res = news_searcher("Afonso lotados dispensava")
-# Afonso, 17 anos, vive nas ruas do Porto ao deus-dará 3.86760587747
-# Ex-diretor-geral da Autoridade Tributária insiste que "lista VIP" é mentira 5.42490048037
-# Metro de Lisboa atira para o lixo 20 milhões 4.08889826023
-# Hotéis estão quase lotados nas mini-férias da Páscoa 4.40620856046

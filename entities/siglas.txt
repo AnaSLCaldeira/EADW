@@ -1,0 +1,111 @@
+AD - Aliança Democrática
+ADETURN - Associação para o Desenvolvimento do Turismo na Região do Norte
+ADIM - Associação para a Defesa dos Interesses de Macau
+AEP - Associação Empresarial de Portugal
+AM - Área Metropolitana
+AML - Área Metropolitana de Lisboa
+AMP - Área Metropolitana do Porto
+ANACOM - Autoridade Nacional de Comunicações
+ANMP - Associação Nacional de Municípios Portugueses
+APCNP - Associação para a Promoção Cultural do Norte de Portugal
+APRIL - Associação Política Regional e de Intervenção Local
+APU - Aliança Povo Unido
+ASDI - Acção Social Democrata Independente
+BE - Bloco de Esquerda
+CCDRN - Comissão de Coordenação e Desenvolvimento Regional do Norte
+CCRN - Comissão de Coordenação da Região do Norte
+CDS - Centro Democrático Social
+CDS-PP - Partido Popular
+CDU - Coligação Democrática Unitária
+CESAP - Carta de Equipamentos e Serviços de Apoio à População da Região Norte
+CINDOR - Centro de Formação Profissional da Indústria de Ourivesaria e Relojoaria
+CNE - Comissão Nacional de Eleições
+ComUrb - Comunidade Urbana
+CTP - Confederação do Turismo Português
+DGAL - Direcção Geral das Autarquias Locais
+DGEEP - Direcção Geral de Estudos, Estatística e Planeamento
+DGT - Direcção Geral do Turismo
+DR - Diário da República
+DREAM - Direcção Regional de Estatística da Madeira
+DRCN - Delegação Regional da Cultura do Norte
+DSI - Departamento de Sistemas de Informação
+ESS - European Social Survey
+ETAR - Estação de Tratamento de Águas Residuais
+FCT - Fundação para a Ciência e a Tecnologia
+FEDER - Fundo Europeu de Desenvolvimento Regional
+FEPU - Frente Eleitoral Povo Unido
+FRS - Coligação Frente Republicana e Socialista
+FSP - Frente Socialista Popular
+GAM - Grande Área Metropolitana
+GAML - Grande Área Metropolitana de Lisboa
+GAMP - Grande Área Metropolitana do Porto
+GEPAT - Gabinete de Estudos e Planeamento da Administração do Território
+GIASE - Gabinete de Informação e Avaliação do Sistema Educativo do Ministério daEducação
+GTAESI - Grupo de Trabalho para o Acompanhamento das Estatísticas da Sociedade da Informação
+ICEP - Investimento, Comércio e Turismo de Portugal
+ICS - Instituto de Ciências Sociais da Universidade de Lisboa
+IDIT - Instituto de Desenvolvimento e Inovação Tecnológica
+IGAC - Inspecção-Geral das Actividades Culturais
+IGE - Inspecção-Geral de Espectáculos
+II - Instituto de Informática do Ministério das Finanças e da Administração Pública
+IND - Instituto Nacional do Desporto
+INE - Instituto Nacional de Estatística
+IPA - Instituto Português dos Arquivos
+IPAE - Instituto Português das Artes do Espectáculo
+IPLB - Instituto Português do Livro e da Biblioteca
+IPM - Instituto Português dos Museus
+MC - Ministério da Cultura
+MCES - Ministério da Ciência e do Ensino Superior
+MDP - Movimento Democrático Português 
+MDP/CDE - Movimento Democrático Português/Comissões Democráticas Eleitorais
+NUTS - Nomenclatura das Unidades Territoriais para Fins Estatísticos
+OAC - Observatório das Actividades Culturais
+OCES - Observatório da Ciência e do Ensino Superior
+PALOP - Países de Língua Oficial Portuguesa
+PCB - Porto Convention & Visitors Bureau
+PCP - Partido Comunista Português
+PCP-PEV - Coligação Democrática Unitária
+PDM - Plano Director Municipal
+PEV - Partido Ecologista “Os Verdes”
+PIB - Produto Interno Bruto
+PIOT - Plano Intermunicipal de Ordenamento do Território
+PMOT - Plano Municipal de Ordenamento do Território
+POC - Programa Operacional da Cultura
+PP - Plano de Pormenor
+PPC - Padrão de Poder de Compra
+PPD/PSD - Partido Social Democrata
+PPM - Partido Popular Monárquico
+PRD - Partido Renovador Democrático
+PS - Partido Socialista
+PSN - Partido da Solidariedade Nacional
+PU - Plano de Urbanização
+QCA - Quadro Comunitário de Apoio
+RODOFER - Central Rodo-Ferroviária do Norte
+SREA - Serviço Regional de Estatística dos Açores
+STAPE - Secretariado Técnico dos Assuntos para o Processo Eleitoral
+TIC - Tecnologias de Informação e da Comunicação
+TC - Tribunal de Contas
+UDP - União Democrática Popular
+UEDS - União de Esquerda Socialista Democrática
+UMIC - Agência para a Sociedade do Conhecimento, IP
+UNESCO - United Nations Educational, Scientific and Cultural Organization (Organização das Nações Unidas para a Educação, Ciência e Cultura)
+ESA - European Space Agency (Agência Espacial Europeia)
+ANATEL - Agência Nacional de Telecomunicações
+CIA - Central Intelligence Agency (Agência Central de Inteligência dos EUA)
+ISS - International Space Station (Estação Espacial Internacional)
+FBI - Federal Bureau of Investigation
+GNR - Guarda Nacional Republicana
+IEEE - Institute of Electrical and Electronics Engineers
+INATEL - Instituto Nacional de Telecomunicações
+INEM - Instituto Nacional de Emergência Médica
+Interpol - International Police (Polícia Internacional)
+NASA - National Aeronautics and Space Administration
+NATO - North Atlantic Treaty Organization
+OMS - Organização Mundial de Saúde
+ONU - Organização das Nações Unidas
+PIDE - Polícia Internacional de Defesa do Estado
+PSP - Polícia de Segurança Pública
+SWAT - Special Weapons And Tatics
+UE - União Europeia
+UNICEF - Fundo Internacional de Emergência das Nações Unidas para a Infância)
+EUA - Estados Unidos da América

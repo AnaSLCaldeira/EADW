@@ -12,7 +12,8 @@ def extract_relationships(entities, relationships):
     return relationships
 
 
-def get_relationships(relationships):
+def get_all_relationships():
+    relationships = dict()
     ix = index.open_dir(index_dir)
     results = ix.searcher().search(Every("title"), limit=15)
     for r in results:
@@ -21,8 +22,9 @@ def get_relationships(relationships):
     return relationships
 
 
-# CODIGO DE TESTE
-#relationships = get_relationships(dict())
-#entities = relationships["Portugal"]
-#for entry in sorted(entities):
-#    print entry
+#TRATAR PROBLEMAS COM LOWER CASE, nao reconhece 'portugal'
+def get_relationships(entity):
+    entities = relationships[entity]
+    return " ; ".join(sorted(entities))
+
+relationships = get_all_relationships()

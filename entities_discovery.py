@@ -1,8 +1,7 @@
 from news_searcher import *
 import nltk
 from nltk.tree import *
-from nltk.corpus import floresta
-from nltk.corpus import mac_morpho
+
 
 def parse_dbpedia():
 	entities = []
@@ -31,7 +30,7 @@ def get_entities(news):
 		if not word[0].isupper():
 			continue
 		else:
-			if index < (len(words)-1) and words[index+1][0].isupper(): # verifica se existe outra palavra com letra maiuscula (muito provavelmente estao relacionadas) - estender para ver mais que 2?
+			if index < (len(words)-1) and words[index+1][0].isupper(): # verifica se existe outra palavra com letra maiuscula (muito provavelmente estao relacionadas) - estender para ver mais que 2? VER FORCAS ARMADAS
 				if word + " " + words[index+1].encode("UTF-8") in dbpedia_entities:
 					news_entities.append(word + " " + words[index+1].encode("UTF-8"))
 			else:
@@ -39,14 +38,13 @@ def get_entities(news):
 					news_entities.append(word)
 	return sorted(set(news_entities))
 
-# CODIGO DE TESTE
-dbpedia_entities = parse_dbpedia()
 
-news = news_searcher("portugal")
-for entry in news:
-    entities = " ; ".join(get_entities(entry[0][0] + " " + entry[0][1]))
-    print "Score: " + str(entry[1])
-    print "Titulo: " + entry[0][0]
-    print "Descricao: " + entry[0][1]
-    print "Link: " + entry[0][2]
-    print "Entidades: " + entities + "\n"
+def get_news_entities(ask):
+	news = news_searcher(ask)
+	result = ""
+	for entry in news:
+	    entities = " ; ".join(get_entities(entry[0][0] + " " + entry[0][1]))
+	    result += "Score: " + str(entry[1]) + "\nTitulo: " + entry[0][0].encode("UTF-8") + "\nDescricao: " + entry[0][1].encode("UTF-8") + "\nLink: " + entry[0][2].encode("UTF-8") + "\nEntidades: " + entities + "\n\n"
+	return result
+
+dbpedia_entities = parse_dbpedia()

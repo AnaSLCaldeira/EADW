@@ -50,4 +50,4 @@ def checkIfDocExists(title, feed):
     return False
 
 
-#createIndex()
+createIndex()

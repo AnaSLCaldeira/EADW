@@ -49,24 +49,24 @@ def simplify_tag(t):
 
 def train_tagger():
 	#tagged_sents = floresta.tagged_sents(simplify_tags=True) nao funciona
-	tagged_sents = floresta.tagged_sents()
+	#tagged_sents = floresta.tagged_sents()
+	tagged_sents = mac_morpho.tagged_sents()
 	tagged_sents = [[(w,simplify_tag(t)) for (w,t) in sent] for sent in tagged_sents if sent]
-	tagger0 = nltk.DefaultTagger('n')
+	tagger0 = nltk.DefaultTagger("N")
 	tagger1 = nltk.UnigramTagger(tagged_sents, backoff=tagger0)
 	tagger2 = nltk.BigramTagger(tagged_sents, backoff=tagger1)
 	return tagger2
 
 
 #http://www.nltk.org/book/ch07.html
-def extract_entities(chunked):
+def extract_entities(chunked, news):
 	entities = []
 	if chunked.label() == "E":
 		chunked = str(chunked).split(" ")[1:]
 		entity = []
 		for index, item in enumerate(chunked):
 			word = item.split("/")[0] #para retirar tag
-			print "INDEX = " + str(index) + "\tWORD = " + word
-			if word[0].isupper() or (word in special_words):
+			if word[0].isupper() or word in special_words:
 				entity.append(word)
 		if len(entity) > 0 and entity[0] in special_words:
 			entity.remove(entity[0])
@@ -74,15 +74,20 @@ def extract_entities(chunked):
 			entities.append(" ".join(entity))
 	for child in chunked:
 	    if (type(child) is Tree):
-	        entities.extend(extract_entities(child))
+	        entities.extend(extract_entities(child, news))
 	return sorted(set(entities))
 
 
 def get_entities_nltk(news):
 	words = nltk.word_tokenize(news, language="portuguese")
 	tagged_words = tagger.tag(words)
+	for index in range(len(tagged_words)):
+		if tagged_words[index][1] == "": #o tagger devolve alguns tags a null e isso da erro no chunker
+			aux = list(tagged_words[index]) #os tuplos sao imutaveis
+			aux[1] = "N"
+			tagged_words[index] = tuple(aux)
 	chunked = cp.parse(tagged_words)
-	entities = extract_entities(chunked)
+	entities = extract_entities(chunked, news) #por vezes, ao fazer o chunk, devolvia <> e lancava uma excepcao
 	return entities
 
 
@@ -95,9 +100,9 @@ def get_news_entities(ask):
 	return result
 
 
-dbpedia_entities = parse_dbpedia()
+#dbpedia_entities = parse_dbpedia()
 tagger = train_tagger()
-grammar = r"""E: {<n|prop>+}""" #agrupa nomes e nomes proprios
+grammar = "E: {<N|NPROP>+}" #agrupa nomes e nomes proprios
 cp = nltk.RegexpParser(grammar)
-special_words = ["da", "das", "do", "dos"]
+special_words = ["da", "das", "de", "do", "dos"]
 print get_news_entities("karatecas")

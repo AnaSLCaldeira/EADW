@@ -61,14 +61,17 @@ def train_tagger():
 def extract_entities(chunked):
 	entities = []
 	if chunked.label() == "E":
-		entity = str(chunked).split(" ")[1:]
-		entity2 = []
-		for item in entity:
+		chunked = str(chunked).split(" ")[1:]
+		entity = []
+		for index, item in enumerate(chunked):
 			word = item.split("/")[0] #para retirar tag
-			if word[0].isupper():
-				entity2.append(word)
-		if len(entity2) > 0:
-			entities.append(" ".join(entity2))
+			print "INDEX = " + str(index) + "\tWORD = " + word
+			if word[0].isupper() or (word in special_words):
+				entity.append(word)
+		if len(entity) > 0 and entity[0] in special_words:
+			entity.remove(entity[0])
+		if len(entity) > 0:
+			entities.append(" ".join(entity))
 	for child in chunked:
 	    if (type(child) is Tree):
 	        entities.extend(extract_entities(child))
@@ -96,4 +99,5 @@ dbpedia_entities = parse_dbpedia()
 tagger = train_tagger()
 grammar = r"""E: {<n|prop>+}""" #agrupa nomes e nomes proprios
 cp = nltk.RegexpParser(grammar)
-print get_news_entities("Portugal")
+special_words = ["da", "das", "do", "dos"]
+print get_news_entities("karatecas")

@@ -73,7 +73,7 @@ PMOT - Plano Municipal de Ordenamento do Território
 POC - Programa Operacional da Cultura
 PP - Plano de Pormenor
 PPC - Padrão de Poder de Compra
-PPD/PSD - Partido Social Democrata
+PSD - Partido Social Democrata
 PPM - Partido Popular Monárquico
 PRD - Partido Renovador Democrático
 PS - Partido Socialista
@@ -109,3 +109,4 @@ SWAT - Special Weapons And Tatics
 UE - União Europeia
 UNICEF - Fundo Internacional de Emergência das Nações Unidas para a Infância)
 EUA - Estados Unidos da América
+FMI - Fundo Monetário Internacional

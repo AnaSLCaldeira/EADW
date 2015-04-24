@@ -17,7 +17,10 @@ def get_all_relationships():
     ix = index.open_dir(index_dir)
     results = ix.searcher().search(Every("title"), limit=None)
     for r in results:
-        entities = get_entities_nltk(r["title"] + " " + r["body"])
+        print r["title"]
+        print r["body"]
+        print r["link"]
+        entities = get_entities_nltk(r["title"] + ";" + r["body"])
         relationships.update(extract_relationships(entities, relationships))
     return relationships
 

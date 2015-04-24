@@ -3,7 +3,7 @@ import nltk
 from nltk.tree import *
 from nltk.corpus import mac_morpho
 import pickle
-import unicodedata
+import unicodedata #para retirar os acentos
 
 def parse_dbpedia():
 	entities = []
@@ -13,15 +13,17 @@ def parse_dbpedia():
 			entities.append(unicodedata.normalize('NFKD', entity.decode("UTF-8")).encode('ASCII', 'ignore'))
 	with open ("entities/DBpediaEntities-PT-0.1/organizations.txt", 'r') as f:
 		for line in f:
-			entities.append(line.split("/")[4].replace("_", " ").replace("\n", ""))
+			entity = line.split("/")[4].replace("_", " ").replace("\n", "")
+			entities.append(unicodedata.normalize('NFKD', entity.decode("UTF-8")).encode('ASCII', 'ignore'))
 	with open ("entities/DBpediaEntities-PT-0.1/persons.txt", 'r') as f:
 		for line in f:
-			entities.append(line.split("/")[4].replace("_", " ").replace("\n", ""))
+			entity = line.split("/")[4].replace("_", " ").replace("\n", "")
+			entities.append(unicodedata.normalize('NFKD', entity.decode("UTF-8")).encode('ASCII', 'ignore'))
 	with open ("entities/siglas.txt", 'r') as f:
 		for line in f:
 			entity = line.split(" - ")
 			entities.append(entity[0])
-			entities.append(entity[1])
+			entities.append(unicodedata.normalize('NFKD', entity[1].decode("UTF-8")).encode('ASCII', 'ignore'))
 	return entities
 
 
@@ -65,30 +67,6 @@ def get_tagger():
 	return tagger
 
 
-#http://www.nltk.org/book/ch07.html
-def extract_entities(chunked):
-	entities = []
-	if chunked.label() == "E":
-		chunked = str(chunked).split(" ")[1:]
-		entity = []
-		for index, item in enumerate(chunked):
-			if item != "": #o tagger esta a por alguns com ""
-				word = item.split("/")[0] #para retirar tag
-				if word != "": #ha um caso em que no meio do texto aparece <em> </em> e provocava erro sem isto
-					if word[0].isupper() or word in special_words:
-						entity.append(word)
-		if len(entity) > 0 and entity[0] in special_words:
-			entity.remove(entity[0])
-		if len(entity) > 0 and entity[-1] in special_words:
-			entity.remove(entity[-1])
-		if len(entity) > 0:
-			entities.append(" ".join(entity))
-	for child in chunked:
-	    if (type(child) is Tree):
-	        entities.extend(extract_entities(child))
-	return sorted(set(entities))
-
-
 def entity_in_dbpedia(entity):
 	if entity in dbpedia_entities:
 		return True
@@ -103,6 +81,31 @@ def remove_duplicates(entities):
 				entities.remove(entity)
 				entities2.remove(entity)
 	return entities
+
+
+#http://www.nltk.org/book/ch07.html
+def extract_entities(chunked):
+	entities = []
+	if chunked.label() == "E":
+		chunked = str(chunked).split(" ")[1:]
+		entity = []
+		for item in chunked:
+			if item != "": #o tagger esta a por alguns com ""
+				word = item.split("/")[0] #para retirar tag
+				if word != "": #ha um caso em que no meio do texto aparece <em> </em> e provocava erro sem isto
+					if word[0].isupper() or word in special_words:
+						entity.append(word)
+					
+		if len(entity) > 0 and entity[0] in special_words:
+			entity.remove(entity[0])
+		if len(entity) > 0 and entity[-1] in special_words:
+			entity.remove(entity[-1])
+		if len(entity) > 0:
+			entities.append(" ".join(entity))
+	for child in chunked:
+	    if (type(child) is Tree):
+	        entities.extend(extract_entities(child))
+	return sorted(set(entities))
 
 
 def get_entities_nltk(news):
@@ -135,7 +138,7 @@ def get_news_entities(ask):
 	result = ""
 	for entry in news:
 		entities = get_entities_nltk(entry[0][0] + ";" + entry[0][1])
-		#entities = remove_small_not_in_dbpedia(entities)
+		entities = remove_small_not_in_dbpedia(entities)
 		entities = remove_duplicates(entities)
 		result += "Score: " + str(entry[1]) + "\nTitulo: " + entry[0][0] + "\nDescricao: " + entry[0][1] + "\nLink: " + entry[0][2] + "\nEntidades: " + " ; ".join(entities) + "\n\n"
 	return result
@@ -147,4 +150,6 @@ tagger = get_tagger()
 grammar = "E: {<N|NPROP>+}" #agrupa nomes e nomes proprios
 cp = nltk.RegexpParser(grammar)
 special_words = ["da", "das", "de", "do", "dos"]
-print get_news_entities("portugal")
+print get_news_entities("naufragos")
+
+#nao encontra mediterraneo

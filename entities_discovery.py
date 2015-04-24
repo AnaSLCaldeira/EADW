@@ -3,6 +3,7 @@ import nltk
 from nltk.tree import *
 from nltk.corpus import mac_morpho
 from nltk.corpus import floresta
+import pickle
 
 def parse_dbpedia():
 	entities = []
@@ -48,6 +49,7 @@ def simplify_tag(t):
 
 
 def train_tagger():
+	print "VIM TREINAR"
 	#tagged_sents = floresta.tagged_sents(simplify_tags=True) nao funciona
 	#tagged_sents = floresta.tagged_sents()
 	tagged_sents = mac_morpho.tagged_sents()
@@ -55,26 +57,44 @@ def train_tagger():
 	tagger0 = nltk.DefaultTagger("N")
 	tagger1 = nltk.UnigramTagger(tagged_sents, backoff=tagger0)
 	tagger2 = nltk.BigramTagger(tagged_sents, backoff=tagger1)
+	
+	output = open("tagger.pkl", "wb")
+	pickle.dump(tagger2, output, -1)
+	output.close()
+
 	return tagger2
 
 
+def get_tagger():
+	try:
+		input = open("tagger.pkl", "rb")
+		tagger = pickle.load(input)
+		input.close()
+	except:
+		tagger = train_tagger()
+	return tagger
+
+
 #http://www.nltk.org/book/ch07.html
-def extract_entities(chunked, news):
+def extract_entities(chunked):
 	entities = []
 	if chunked.label() == "E":
 		chunked = str(chunked).split(" ")[1:]
 		entity = []
 		for index, item in enumerate(chunked):
-			word = item.split("/")[0] #para retirar tag
-			if word[0].isupper() or word in special_words:
-				entity.append(word)
+			if item != "": #o tagger esta a por alguns com ""
+				word = item.split("/")[0] #para retirar tag
+				if word[0].isupper() or word in special_words:
+					entity.append(word)
 		if len(entity) > 0 and entity[0] in special_words:
 			entity.remove(entity[0])
+		if len(entity) > 0 and entity[-1] in special_words:
+			entity.remove(entity[-1])
 		if len(entity) > 0:
 			entities.append(" ".join(entity))
 	for child in chunked:
 	    if (type(child) is Tree):
-	        entities.extend(extract_entities(child, news))
+	        entities.extend(extract_entities(child))
 	return sorted(set(entities))
 
 
@@ -87,7 +107,7 @@ def get_entities_nltk(news):
 			aux[1] = "N"
 			tagged_words[index] = tuple(aux)
 	chunked = cp.parse(tagged_words)
-	entities = extract_entities(chunked, news) #por vezes, ao fazer o chunk, devolvia <> e lancava uma excepcao
+	entities = extract_entities(chunked)
 	return entities
 
 
@@ -95,14 +115,15 @@ def get_news_entities(ask):
 	news = news_searcher(ask)
 	result = ""
 	for entry in news:
+		print entry
 		entities = " ; ".join(get_entities_nltk(entry[0][0] + ";" + entry[0][1]))
 		result += "Score: " + str(entry[1]) + "\nTitulo: " + entry[0][0] + "\nDescricao: " + entry[0][1] + "\nLink: " + entry[0][2] + "\nEntidades: " + entities + "\n\n"
 	return result
 
 
 #dbpedia_entities = parse_dbpedia()
-tagger = train_tagger()
+tagger = get_tagger()
 grammar = "E: {<N|NPROP>+}" #agrupa nomes e nomes proprios
 cp = nltk.RegexpParser(grammar)
 special_words = ["da", "das", "de", "do", "dos"]
-print get_news_entities("karatecas")
+print get_news_entities("Portugal")

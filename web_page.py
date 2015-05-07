@@ -1,8 +1,8 @@
 import web
 from web import form
-from news_searcher import *
-from entities_discovery import *
+
 from relationships_discovery import *
+
 
 render = web.template.render('templates/')
 
@@ -30,8 +30,10 @@ class index:
             	return get_news(form['Search'].value)
             elif form['Search with entities'].value != "":
             	return get_news_entities(form['Search with entities'].value)
-            elif form['Relationships with entity'].value != "":
-            	return get_relationships(form['Relationships with entity'].value)
+            #elif form['Relationships with entity'].value != "":
+            #	return relation_graph(form['Relationships with entity'].value)
+            #elif form['Relationships with entity'].value != "":
+            #	return get_relationships(form['Relationships with entity'].value)
 
 if __name__=="__main__":
     web.internalerror = web.debugerror

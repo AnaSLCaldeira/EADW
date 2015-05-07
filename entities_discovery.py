@@ -6,6 +6,7 @@ from nltk.tree import *
 from nltk.corpus import mac_morpho
 
 from news_searcher import *
+from statistics import save_relations
 
 
 def parse_dbpedia():
@@ -148,9 +149,16 @@ def get_news_entities(ask):
         entities = get_entities_nltk(entry[0][0] + ";" + entry[0][1])
         entities = remove_small_not_in_dbpedia(entities)
         entities = remove_duplicates(entities)
+        relations = get_news_relations(entry[0][0], entities)
+        relations.extend(get_news_relations(entry[0][1], entities))
+        save_relations(relations)
         result += "Score: " + str(entry[1]) + "\nTitulo: " + entry[0][0] + "\nDescricao: " + entry[0][1] + "\nLink: " + \
                   entry[0][2] + "\nEntidades: " + " ; ".join(entities) + "\n\n"
     return result
+
+
+def search_for_relation():
+    return False
 
 
 def check_is_entity(keywords):
@@ -161,6 +169,35 @@ def check_is_entity(keywords):
     else:
         return True
 
+
+def get_news_relations(news, entities):
+
+    relations = []
+
+    if len(entities) == 1:
+        return []
+
+    # retrieves verbs from the title and description
+    words = nltk.word_tokenize(news, language='portuguese')
+    tagged = tagger.tag(words)
+    verbs = []
+    for item in tagged:
+        if item[1] == "V":
+            verbs.append(item[0])
+
+    for i in range(0, len(entities)):
+        if not (i+1) >= len(entities):
+            start = entities[i]
+            end = entities[i+1]
+
+        for verb in verbs:
+            x = re.findall(u'(.+){0}(.+){1}(.+){2}(.+)'.format(start, verb, end), news)
+            if x:
+                relation = [start, end, verb] # verb is sent to save in a file
+                relations.append(relation)
+    return relations
+
+
 dbpedia_entities = parse_dbpedia()
 dbpedia_partial_entities = parse_dbpedia_entities()
 tagger = get_tagger()
@@ -168,6 +205,6 @@ grammar = "E: {<N|NPROP>+}"  #agrupa nomes e nomes proprios
 cp = nltk.RegexpParser(grammar)
 special_words = ["da", "das", "de", "do", "dos"]
 
-print get_news_entities("naufragos")
+print get_news_entities("psd")
 
 #nao encontra mediterraneo

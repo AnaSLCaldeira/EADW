@@ -53,7 +53,6 @@ def add_searched_word(ask):
 
 
 def add_entity_stats(entities):
-
     search = entities.split(" ")
     current_dict = read_stats(CONST_ENTITY)
 
@@ -68,7 +67,6 @@ def add_entity_stats(entities):
 
 
 def read_stats(which):
-
     if which == CONST_WORD:
         with open('statistics/searched_word.json', 'r') as squery:
             diction = json.load(squery)
@@ -95,5 +93,16 @@ def get_max_value(dic):
     return keys[0] if len(keys) == 1 else keys
 
 
-print "Most searched keyword(s): "+most_searched_keyword()
-print "Most searched query(ies): "+most_searched_query()
+def save_relations(relations):
+    current_dict = read_stats(CONST_RELATIONS)
+
+    for relation in relations:
+        if not relation[0] in current_dict:
+            current_dict[relation[0]] = relation[1]
+
+    with open('statistics/entity_relations.json', 'w') as squery:
+        json.dump(current_dict, squery)
+
+
+#print "Most searched keyword(s): " + most_searched_keyword()
+#print "Most searched query(ies): " + most_searched_query()

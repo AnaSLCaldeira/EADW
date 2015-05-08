@@ -6,7 +6,7 @@ from nltk.tree import *
 from nltk.corpus import mac_morpho
 
 from news_searcher import *
-from statistics import save_relations
+from statistics import save_relations, update_entity_counter
 
 
 def parse_dbpedia():
@@ -80,15 +80,20 @@ def entity_in_partial_dbpedia(entity):
     if entity in dbpedia_partial_entities:
         return True
 
+
 # para remover "Portas" quando existe essa e "Paulo Portas"; traz problemas com "Portugal" e "Vodafone Portugal"
 def remove_duplicates(entities):
+    result = list(set(entities))
     entities2 = entities[:]
-    for index, entity in enumerate(entities):
-        for index2, entity2 in enumerate(entities2):
-            if entity in entity2 and index != index2:  # verifica se a entidade e substring de outra
-                entities.remove(entity)
-                entities2.remove(entity)
-    return entities
+    # print entities
+    # for index, entity in enumerate(entities):
+    #     for index2, entity2 in enumerate(entities2):
+    #         if entity in entity2 and index != index2:  # verifica se a entidade e substring de outra
+    #             print entity
+    #             entities.remove(entity)
+    #             entities2.remove(entity)
+    print result
+    return result
 
 
 # http://www.nltk.org/book/ch07.html
@@ -112,7 +117,7 @@ def extract_entities(chunked):
         if len(entity) > 0:
             entities.append(" ".join(entity))
     for child in chunked:
-        if (type(child) is Tree):
+        if type(child) is Tree:
             entities.extend(extract_entities(child))
     return sorted(set(entities))
 
@@ -152,6 +157,7 @@ def get_news_entities(ask):
         relations = get_news_relations(entry[0][0], entities)
         relations.extend(get_news_relations(entry[0][1], entities))
         save_relations(relations)
+        update_entity_counter(entities)
         result += "Score: " + str(entry[1]) + "\nTitulo: " + entry[0][0] + "\nDescricao: " + entry[0][1] + "\nLink: " + \
                   entry[0][2] + "\nEntidades: " + " ; ".join(entities) + "\n\n"
     return result
@@ -205,6 +211,6 @@ grammar = "E: {<N|NPROP>+}"  #agrupa nomes e nomes proprios
 cp = nltk.RegexpParser(grammar)
 special_words = ["da", "das", "de", "do", "dos"]
 
-print get_news_entities("psd")
+#print get_news_entities("Jorge")
 
 #nao encontra mediterraneo

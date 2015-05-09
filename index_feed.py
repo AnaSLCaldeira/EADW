@@ -10,6 +10,7 @@ source_dn_all = feedparser.parse("http://feeds.dn.pt/DN-Ultimas") # all news
 source_jn_all = feedparser.parse("http://feeds.jn.pt/JN-ULTIMAS") # all news
 index_dir = "indexdir"
 
+
 def createIndex():
     if not os.path.exists(index_dir):
         os.mkdir(index_dir)

@@ -109,8 +109,10 @@ def get_all_relations_graph():
     for key in relations:
         for rel_list in relations[key]:
             for item in rel_list:
+                print item
                 relationships_graph.append((key, item))
 
+    #print relationships_graph
     return relationships_graph
 
 
@@ -128,5 +130,6 @@ def print_all_relations_graph():
 
 #print print_relation_graph("Portugal")
 #print print_all_relations_graph()
-#print relation_graph("PSD")
 process_all_news_relations()
+#print print_relation_graph("Portugal")
+#process_all_news_relations()

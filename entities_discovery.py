@@ -92,7 +92,6 @@ def remove_duplicates(entities):
     #             print entity
     #             entities.remove(entity)
     #             entities2.remove(entity)
-    print result
     return result
 
 

@@ -26,6 +26,9 @@
     "Tim Tebow": [
         "da NFL"
     ], 
+    "I Liga": [
+        "Sindicato dos Jogadores Profissionais de Futebol"
+    ], 
     "Liga Portuguesa de Futebol Profissional": [
         "Cidade de Coimbra"
     ], 
@@ -53,14 +56,11 @@
     "FC Barcelona": [
         "Paris Saint-Germain"
     ], 
-    "Mike Comrie": [
-        "Luca"
-    ], 
     "Jorge Pelicano": [
         "Conde Ferreira"
     ], 
-    "Presidente dos Estados Unidos Barack Obama": [
-        "Baltimore"
+    "Mike Comrie": [
+        "Luca"
     ], 
     "Jorge Moreira da Silva": [
         "Algarve"
@@ -83,6 +83,9 @@
     "Miguel Albuquerque": [
         "Cavaco Silva"
     ], 
+    "Sindicato dos Trabalhadores": [
+        "Dia do Trabalhador"
+    ], 
     "Sony": [
         "John Moore"
     ], 
@@ -101,15 +104,21 @@
     "Sara Moreira": [
         "Londres"
     ], 
+    "Gaspar Gomes": [
+        "Vandoma"
+    ], 
     "F.C. Porto": [
         "Munique"
+    ], 
+    "Reino Unido": [
+        "Sevilha"
     ], 
     "EUA": [
         "Alemanha", 
         "Berlim"
     ], 
-    "Sindicato dos Trabalhadores": [
-        "Dia do Trabalhador"
+    "Liberais Democratas": [
+        "Reino Unido"
     ], 
     "Ed Miliband": [
         "Reino Unido"
@@ -123,8 +132,8 @@
     "Braga": [
         "Liga Europa"
     ], 
-    "Carly Fiorina": [
-        "Estados Unidos"
+    "Presidente dos Estados Unidos Barack Obama": [
+        "Baltimore"
     ], 
     "Microsoft": [
         "Portugal"
@@ -135,8 +144,8 @@
     "Calbuco": [
         "de Puerto Montt"
     ], 
-    "Liberais Democratas": [
-        "Reino Unido"
+    "Carly Fiorina": [
+        "Estados Unidos"
     ], 
     "Portugal": [
         "Roma", 
@@ -148,6 +157,9 @@
     "Cavaco Silva": [
         "Portugal"
     ], 
+    "PSD": [
+        "PS"
+    ], 
     "Juca Ferreira": [
         "Facebook"
     ], 
@@ -158,11 +170,13 @@
         "Parlamento Europeu"
     ], 
     "Alemanha": [
-        "Xabi Alonso"
+        "Xabi Alonso", 
+        "Espanha"
     ], 
     "Lisboa": [
         "SIC", 
-        "PSP"
+        "PSP", 
+        "Big Bad Wolf"
     ], 
     "Maia": [
         "XV Portugal International Karate Open"

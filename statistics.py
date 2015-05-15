@@ -107,9 +107,12 @@ def read_stats(which):
 
 
 def get_max_value(dic):
-    maxx = max(dic.values())
-    keys = [x for x, y in dic.items() if y == maxx]
-    return keys[0] if len(keys) == 1 else keys
+    if len(dic.keys()) != 0:
+        maxx = max(dic.values())
+        keys = [x for x, y in dic.items() if y == maxx]
+        return keys[0] if len(keys) == 1 else keys
+    else:
+        return "No Entities"
 
 
 def get_max_relation_value(data):
